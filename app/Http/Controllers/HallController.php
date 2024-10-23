@@ -13,7 +13,7 @@ class HallController extends Controller
      */
     public function index()
     {
-        return Hall::all();
+        //return Hall::all();
     }
 
     /**
@@ -31,9 +31,9 @@ class HallController extends Controller
     {
         $hall = new Hall();
 
-        $hall->name ="Зал";
-        $hall->number_of_rows = 0;
-        $hall->seats_in_row = 0;
+        //$hall->name ="Зал";
+        //$hall->number_of_rows = 0;
+        //$hall->seats_in_row = 0;
         $hall->save();
 
         return redirect('/admin');
