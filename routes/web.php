@@ -21,9 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/admin/hall', [HallController::class, 'index']);
-    Route::post('/admin/hall', [HallController::class, 'store']);
-    Route::delete('/admin/hall/{id}', [HallController::class, 'destroy']);
+    Route::get('/admin/hall', [HallController::class, 'index'])->name('hall.index');
+    Route::post('/admin/hall', [HallController::class, 'store'])->name('hall.store');
+    Route::delete('/admin/hall/{id}', [HallController::class, 'destroy'])->name('hall.destroy');
 });
 
 require __DIR__.'/auth.php';
