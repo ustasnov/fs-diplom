@@ -1,6 +1,6 @@
-@props(['type', 'title' => '', 'command', 'data_id'])
+@props(['type', 'title' => '', 'command', 'method', 'data_id'])
 
-<form class="conf-step-buttom__form" action={{ route('hall.destroy', ['id' => $data_id]) }} method="POST">
+<form class="conf-step-buttom__form" action={{ route($command, ['id' => $data_id]) }} method={{$method}}>
     @csrf
     @if ($type === 'trash')
         @method('DELETE')

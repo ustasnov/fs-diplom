@@ -29,14 +29,14 @@
                     @foreach ($halls as $hall)
                         <li>{{ $hall->name }} {{ $hall->id }}
                             <x-admin.conf-step-button type="trash" title="" command="hall.destroy"
-                                data_id="{{ $hall->id }}">
+                                method="POST" data_id="{{ $hall->id }}">
                             </x-admin.conf-step-button>
                         </li>
                     @endforeach
                 </ul>
             @endif
-
-            <button class="conf-step__button conf-step__button-accent">Создать зал</button>
+            
+            <button class="conf-step__button conf-step__button-accent save-hall__button">Создать зал</button>
         </x-admin.conf-step>
 
         <x-admin.conf-step title="Конфигурация залов">
@@ -300,6 +300,7 @@
             </div>
         </x-admin.conf-step>
     </main>
+
 </body>
 
 </html>

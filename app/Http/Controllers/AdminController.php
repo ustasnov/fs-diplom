@@ -14,6 +14,10 @@ class AdminController extends Controller
         return view('admin', ["halls" => $halls]);
     }
 
+    public function createHall() {
+      return view('modalform');
+    }
+
     public function destroyHall(int $id)
     {
         Hall::destroy($id);
