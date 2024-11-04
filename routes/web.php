@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HallController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('/admin/hall/create', [AdminController::class, 'createHall'])->name('hall.create');
-    Route::delete('/admin/hall/{id}', [AdminController::class, 'destroyHall'])->name('hall.destroy');
+    Route::post('/admin/hall', [HallController::class, 'store'])->name('hall.store');
+    Route::delete('/admin/hall/{id}', [HallController::class, 'destroy'])->name('hall.destroy');
 });
 
 require __DIR__.'/auth.php';

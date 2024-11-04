@@ -9,7 +9,8 @@
   <link
     href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&amp;subset=cyrillic,cyrillic-ext,latin-ext"
     rel="stylesheet">
-  @vite(['resources/css/admin/normalize.css', 'resources/css/admin/styles.css', 'resources/js/accordeon.js'])
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  @vite(['resources/css/app.css','resources/js/app.js','resources/css/admin/normalize.css', 'resources/css/admin/styles.css', 'resources/js/accordeon.js'])
 </head>
 
 <body>
@@ -24,21 +25,35 @@
     <x-admin.conf-step title="Управление залами">
       <p class="conf-step__paragraph">Доступные залы:</p>
 
-    @if (count($halls) > 0)
-      <ul class="conf-step__list">
-      @foreach ($halls as $hall)
-        <li>{{ $hall->name }} {{ $hall->id }}
-          <x-admin.conf-step-button type="trash" title="" command="hall.destroy" method="POST"
-            data_id="{{ $hall->id }}">
-          </x-admin.conf-step-button>
-        </li>
-      @endforeach
-      </ul>
-    @endif
-      <x-admin.conf-step-button type="accent" title="Сохранить" command="hall.create" method="GET"
-        data_id=""> 
+      @if (count($halls) > 0)
+        <ul class="conf-step__list">
+          @foreach ($halls as $hall)
+            <li class="flex">{{ $hall->name }}
+              <x-admin.conf-step-button 
+                type="trash" 
+                action="{{'deletehall' . $hall->id }}" 
+                title="" 
+                command="hall.destroy" 
+                method="POST"
+                data_id="{{ $hall->id }}"
+                content="deletehalldialog"
+                ext="{{ $hall->name }}">
+              </x-admin.conf-step-button>
+            </li>
+          @endforeach
+        </ul>
+      @endif
+      
+      <x-admin.conf-step-button 
+        type="accent" 
+        action="createhall" 
+        title="Создать новый зал" 
+        command="hall.store" 
+        method="POST"
+        data_id=""
+        content="createhalldialog"
+        ext=""> 
       </x-admin.conf-step-button>
-      <!-- <button class="conf-step__button conf-step__button-accent save-hall__button">Создать зал</button> -->
     </x-admin.conf-step>
 
     <x-admin.conf-step title="Конфигурация залов">
@@ -299,6 +314,7 @@
     </x-admin.conf-step>
   </main>
 
+  
 </body>
 
 </html>

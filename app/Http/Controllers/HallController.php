@@ -31,9 +31,9 @@ class HallController extends Controller
     {
         $hall = new Hall();
 
-        //$hall->name ="Зал";
-        //$hall->number_of_rows = 0;
-        //$hall->seats_in_row = 0;
+        $hall->name =$request->name;
+        $hall->number_of_rows = 0;
+        $hall->seats_in_row = 0;
         $hall->save();
 
         return redirect('/admin');
@@ -69,5 +69,6 @@ class HallController extends Controller
     public function destroy(int $id)
     {
         $res = Hall::destroy($id);
+        return redirect('/admin');
     }
   }
